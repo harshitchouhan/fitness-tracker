@@ -1,1 +1,7 @@
-<p>welcome works!</p>
+<div class="welcome" fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="center center" fxLayoutGap="35px">
+  <section *ngFor="let text of homeText">
+    <mat-icon class="icon">{{ text.icon }}</mat-icon>
+    <h1 class="heading">{{ text.heading }}</h1>
+    <p>{{ text.desc }}</p>
+  </section>
+</div>
