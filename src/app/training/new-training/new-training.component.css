@@ -1,0 +1,12 @@
+.new-training {
+  height: 70vh;
+}
+.card {
+  height: 40vh;
+  margin: auto 0;
+}
+
+mat-form-field {
+  padding-bottom: 0 !important;
+  margin: 1rem 0 0 0 !important;
+}
