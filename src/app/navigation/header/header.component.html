@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onSidenavToggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div><a routerLink="/">Logo</a></div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-list">
+      <li *ngFor="let link of navigationLinks">
+        <a [routerLink]="link.route">{{ link.label }}</a>
+      </li>
+      <a>Logout</a>
+    </ul>
+  </div>
+</mat-toolbar>

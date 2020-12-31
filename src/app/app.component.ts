@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-interface Links {
+export interface Links {
   label: string;
   route: string;
   emojiName: string;

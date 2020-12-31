@@ -1,37 +1,9 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="naviagtion">
-    <mat-nav-list>
-      <ng-container *ngFor="let link of navigationLinks">
-        <a mat-list-item [routerLink]="link.route" (click)="sidenav.close()">
-          <mat-icon>{{ link.emojiName }}</mat-icon>
-          <span class="nav-caption">{{ link.label }}</span>
-        </a>
-      </ng-container>
-      <mat-list-item>
-        <button mat-icon-button (click)="sidenav.close()">
-          <mat-icon>eject</mat-icon>
-          <span class="nav-caption">Logout</span>
-        </button>
-      </mat-list-item>
-    </mat-nav-list>
+    <app-sidenav-list [navigationLinks]="navigationLinks" (sidenavToggle)="sidenav.toggle()"></app-sidenav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div fxHide.gt-xs>
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
-      <div><a routerLink="/">Logo</a></div>
-      <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-        <ul fxLayout fxLayoutGap="15px" class="navigation-list">
-          <li *ngFor="let link of navigationLinks">
-            <a [routerLink]="link.route">{{ link.label }}</a>
-          </li>
-          <a>Logout</a>
-        </ul>
-      </div>
-    </mat-toolbar>
+    <app-header [navigationLinks]="navigationLinks" (sidenavToggle)="sidenav.toggle()"></app-header>
     <main>
       <router-outlet></router-outlet>
     </main>
