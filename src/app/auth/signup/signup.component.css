@@ -5,5 +5,9 @@ form {
 
 mat-form-field {
   width: 20rem;
+}
+
+mat-checkbox,
+mat-form-field {
   margin-bottom: 1rem;
 }
