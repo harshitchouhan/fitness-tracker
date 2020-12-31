@@ -1,0 +1,9 @@
+.sign-form,
+form {
+  height: 100vh;
+}
+
+mat-form-field {
+  width: 20rem;
+  margin-bottom: 1rem;
+}

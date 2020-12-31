@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MaterialModule } from './material.module';
 import { AppRutingModule } from './app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -25,7 +26,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
     PastTrainingsComponent,
     WelcomeComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, MaterialModule, AppRutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MaterialModule,
+    AppRutingModule,
+    FlexLayoutModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
