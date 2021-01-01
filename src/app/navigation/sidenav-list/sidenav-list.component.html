@@ -1,11 +1,11 @@
 <mat-nav-list>
   <ng-container *ngFor="let link of navigationLinks">
-    <a mat-list-item [routerLink]="link.route" (click)="onSidenavToggle()">
+    <a *ngIf="display(link.label)" mat-list-item [routerLink]="link.route" (click)="onSidenavToggle()">
       <mat-icon>{{ link.emojiName }}</mat-icon>
       <span class="nav-caption">{{ link.label }}</span>
     </a>
   </ng-container>
-  <mat-list-item>
+  <mat-list-item *ngIf="display('Logout')">
     <button mat-icon-button (click)="onSidenavToggle()">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Logout</span>

@@ -1,0 +1,12 @@
+section {
+  height: 80vh;
+}
+
+form {
+  height: 100%;
+}
+
+mat-form-field {
+  width: 20rem;
+  margin-bottom: 1rem;
+}

@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from 'src/app/auth/auth.service';
 
 import { Links } from './../../app.component';
 
@@ -7,15 +9,43 @@ import { Links } from './../../app.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Input() navigationLinks: Links[];
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor() {}
+  isAuth: boolean;
+  authSubscription: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authSubscription = this.authService.authChange.subscribe((authStatus) => {
+      this.isAuth = authStatus;
+    });
+  }
 
   onSidenavToggle() {
     this.sidenavToggle.emit();
+  }
+
+  display(route: string) {
+    switch (route) {
+      case 'Signup':
+        if (!this.isAuth) return true;
+        break;
+      case 'Login':
+        if (!this.isAuth) return true;
+        break;
+      case 'Logout':
+        if (this.isAuth) return true;
+        break;
+      case 'Training':
+        if (this.isAuth) return true;
+        break;
+    }
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
   }
 }
