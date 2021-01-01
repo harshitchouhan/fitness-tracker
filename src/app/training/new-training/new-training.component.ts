@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 interface Excercise {
   label: string;
@@ -18,7 +18,13 @@ export class NewTrainingComponent implements OnInit {
     { label: 'Burpees', value: 'burpees' },
   ];
 
+  @Output() trainingStart = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onStartTraining() {
+    this.trainingStart.emit();
+  }
 }
