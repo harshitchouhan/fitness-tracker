@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
@@ -16,7 +15,7 @@ export class AuthService {
 
   authChange = new Subject<boolean>();
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService, private snackBar: MatSnackBar, private UIService: UiService) {}
+  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService, private UIService: UiService) {}
 
   initAuthListener() {
     this.afAuth.authState.subscribe((user) => {
@@ -72,8 +71,6 @@ export class AuthService {
   }
 
   private _showSnackBar(error: any) {
-    this.snackBar.open(error.message, null, {
-      duration: 6000,
-    });
+    this.UIService.showSnackBar(error.message, null, 6000);
   }
 }
