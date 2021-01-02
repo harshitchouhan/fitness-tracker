@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
+import { UiService } from './../shared/ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ export class AuthService {
 
   authChange = new Subject<boolean>();
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) {}
+  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService, private snackBar: MatSnackBar, private UIService: UiService) {}
 
   initAuthListener() {
     this.afAuth.authState.subscribe((user) => {
@@ -28,24 +30,30 @@ export class AuthService {
   }
 
   registerUser(authData: AuthData) {
+    this.UIService.loadingStateChanged.next(true);
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
+        this.UIService.loadingStateChanged.next(false);
         console.log(result);
       })
       .catch((error) => {
-        console.log(error);
+        this.UIService.loadingStateChanged.next(false);
+        this._showSnackBar(error);
       });
   }
 
   login(authData: AuthData) {
+    this.UIService.loadingStateChanged.next(true);
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
+        this.UIService.loadingStateChanged.next(false);
         console.log(result);
       })
       .catch((error) => {
-        console.log(error);
+        this.UIService.loadingStateChanged.next(false);
+        this._showSnackBar(error);
       });
   }
 
@@ -61,5 +69,11 @@ export class AuthService {
     this.isAuthenticated = isSuccess;
     this.authChange.next(isSuccess);
     this.router.navigateByUrl(redirect);
+  }
+
+  private _showSnackBar(error: any) {
+    this.snackBar.open(error.message, null, {
+      duration: 6000,
+    });
   }
 }
