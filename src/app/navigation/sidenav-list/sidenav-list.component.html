@@ -6,9 +6,9 @@
     </a>
   </ng-container>
   <mat-list-item *ngIf="display('Logout')">
-    <button mat-icon-button (click)="onSidenavToggle()">
+    <button mat-icon-button (click)="onLogout()">
       <mat-icon>eject</mat-icon>
-      <span class="nav-caption">Logout</span>
+      <span class="nav-caption" style="cursor: pointer">Logout</span>
     </button>
   </mat-list-item>
 </mat-nav-list>

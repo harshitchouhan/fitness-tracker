@@ -12,7 +12,7 @@
           <a [routerLink]="link.route">{{ link.label }}</a>
         </li>
       </ng-container>
-      <a *ngIf="display('Logout')">Logout</a>
+      <a *ngIf="display('Logout')" (click)="onLogout()" style="cursor: pointer;">Logout</a>
     </ul>
   </div>
 </mat-toolbar>
