@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -22,7 +25,7 @@ import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent, SignupComponent, LoginComponent, TrainingComponent, CurrentTrainingComponent, NewTrainingComponent, PastTrainingsComponent, WelcomeComponent, HeaderComponent, SidenavListComponent, StopTrainingComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, MaterialModule, AppRutingModule, FlexLayoutModule],
+  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, MaterialModule, AppRutingModule, FlexLayoutModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule],
   providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent],
