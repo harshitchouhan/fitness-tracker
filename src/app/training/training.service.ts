@@ -40,11 +40,16 @@ export class TrainingService {
       date: new Date(),
       state: 'cancelled',
     });
+    console.log(progress, this.exercises)
     this.runningExercise = null;
     this.exerciseChanged.next(null);
   }
 
   getRunningExercise() {
     return { ...this.runningExercise };
+  }
+
+  getCompletedOrCanceledExercises() {
+    return this.exercises.slice();
   }
 }
